@@ -51,12 +51,8 @@ fn test_compare_help() {
 fn test_identical_images_zero_diff() {
     let a = solid_png(255, 0, 0);
     let b = solid_png(255, 0, 0);
-    let result = diff::compare(
-        a.path().to_str().unwrap(),
-        b.path().to_str().unwrap(),
-        0.01,
-    )
-    .unwrap();
+    let result =
+        diff::compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
     assert_eq!(result.diff_pixels, 0);
     assert_eq!(result.diff_percent, 0.0);
 }
@@ -65,12 +61,8 @@ fn test_identical_images_zero_diff() {
 fn test_completely_different_images_full_diff() {
     let a = solid_png(255, 0, 0);
     let b = solid_png(0, 0, 255);
-    let result = diff::compare(
-        a.path().to_str().unwrap(),
-        b.path().to_str().unwrap(),
-        0.01,
-    )
-    .unwrap();
+    let result =
+        diff::compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
     assert_eq!(result.diff_pixels, 10_000);
     assert_eq!(result.diff_percent, 1.0);
 }
@@ -79,12 +71,8 @@ fn test_completely_different_images_full_diff() {
 fn test_one_pixel_diff_counted() {
     let a = solid_png(255, 0, 0);
     let b = mostly_red_png();
-    let result = diff::compare(
-        a.path().to_str().unwrap(),
-        b.path().to_str().unwrap(),
-        0.01,
-    )
-    .unwrap();
+    let result =
+        diff::compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
     assert_eq!(result.diff_pixels, 1);
 }
 
@@ -110,12 +98,8 @@ fn test_dimension_mismatch_returns_error() {
 fn test_zero_diff_verdict_is_pass() {
     let a = solid_png(0, 255, 0);
     let b = solid_png(0, 255, 0);
-    let result = diff::compare(
-        a.path().to_str().unwrap(),
-        b.path().to_str().unwrap(),
-        0.01,
-    )
-    .unwrap();
+    let result =
+        diff::compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
     let rep = report::build("a.png", "b.png", &result);
     assert!(matches!(rep.verdict, Verdict::Pass));
 }
@@ -124,12 +108,8 @@ fn test_zero_diff_verdict_is_pass() {
 fn test_over_threshold_verdict_is_fail() {
     let a = solid_png(255, 0, 0);
     let b = solid_png(0, 0, 255);
-    let result = diff::compare(
-        a.path().to_str().unwrap(),
-        b.path().to_str().unwrap(),
-        0.01,
-    )
-    .unwrap();
+    let result =
+        diff::compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
     let rep = report::build("a.png", "b.png", &result);
     assert!(matches!(rep.verdict, Verdict::Fail));
 }
@@ -139,12 +119,8 @@ fn test_single_pixel_diff_within_threshold_passes() {
     // 1 changed pixel in 10000 = 0.0001 — well under 1% threshold
     let a = solid_png(255, 0, 0);
     let b = mostly_red_png();
-    let result = diff::compare(
-        a.path().to_str().unwrap(),
-        b.path().to_str().unwrap(),
-        0.01,
-    )
-    .unwrap();
+    let result =
+        diff::compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
     let rep = report::build("a.png", "b.png", &result);
     assert!(matches!(rep.verdict, Verdict::Pass));
 }

@@ -1,15 +1,20 @@
 mod cli;
 mod output;
 
-use screendiff::{diff, report};
 use anyhow::Result;
 use clap::Parser;
 use cli::{Cli, Commands};
+use screendiff::{diff, report};
 
 fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.command {
-        Commands::Compare { before, after, threshold, json } => {
+        Commands::Compare {
+            before,
+            after,
+            threshold,
+            json,
+        } => {
             let result = diff::compare(&before, &after, threshold)?;
             let report = report::build(&before, &after, &result);
             if json {

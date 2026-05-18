@@ -1,7 +1,11 @@
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "screendiff", about = "Screenshot pixel diff engine — detect visual regressions", version)]
+#[command(
+    name = "screendiff",
+    about = "Screenshot pixel diff engine — detect visual regressions",
+    version
+)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Commands,

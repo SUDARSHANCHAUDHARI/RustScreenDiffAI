@@ -9,3 +9,8 @@ out/
 .vercel
 pnpm-debug.log*
 tsconfig.tsbuildinfo
+
+
+# Added by cargo
+
+/target

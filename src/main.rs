@@ -1,8 +1,7 @@
 mod cli;
-mod diff;
 mod output;
-mod report;
 
+use screendiff::{diff, report};
 use anyhow::Result;
 use clap::Parser;
 use cli::{Cli, Commands};

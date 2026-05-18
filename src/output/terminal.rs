@@ -1,5 +1,5 @@
 use colored::Colorize;
-use crate::report::{DiffReport, Verdict};
+use screendiff::report::{DiffReport, Verdict};
 
 pub fn print(report: &DiffReport) {
     println!("\n{}", "ScreenDiff Report".bold().underline());

@@ -6,6 +6,10 @@ authors = ["Sudarshan Chaudhari <sunny.sudarshan@gmail.com>"]
 description = "Screenshot pixel diff engine — detect visual regressions between images"
 license = "MIT"
 
+[lib]
+name = "screendiff"
+path = "src/lib.rs"
+
 [[bin]]
 name = "screendiff"
 path = "src/main.rs"
@@ -23,3 +27,4 @@ colored = "2"
 assert_cmd = "2"
 predicates = "3"
 tempfile = "3"
+image = "0.25"

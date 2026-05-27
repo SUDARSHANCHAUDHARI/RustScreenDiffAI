@@ -4,7 +4,15 @@ out/
 .env
 .env.local
 .env.*.local
+!.env.example
 *.pem
+*.key
+*.jks
+*.keystore
+local.properties
+secure.properties
+secrets.*
+credentials.*
 .DS_Store
 .vercel
 pnpm-debug.log*

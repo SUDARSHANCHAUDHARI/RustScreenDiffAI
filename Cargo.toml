@@ -1,10 +1,12 @@
 [package]
 name = "screendiff"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 authors = ["Sudarshan Chaudhari <sunny.sudarshan@gmail.com>"]
 description = "Screenshot pixel diff engine — detect visual regressions between images"
 license = "MIT"
+repository = "https://github.com/SUDARSHANCHAUDHARI/RustScreenDiffAI"
+readme = "README.md"
 
 [lib]
 name = "screendiff"

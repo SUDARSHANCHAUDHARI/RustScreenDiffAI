@@ -7,6 +7,8 @@ description = "Screenshot pixel diff engine — detect visual regressions betwee
 license = "MIT"
 repository = "https://github.com/SUDARSHANCHAUDHARI/RustScreenDiffAI"
 readme = "README.md"
+keywords = ["screenshot", "diff", "visual", "testing", "cli"]
+categories = ["command-line-utilities", "multimedia::images"]
 
 [lib]
 name = "screendiff"

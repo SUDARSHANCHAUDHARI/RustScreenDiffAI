@@ -53,6 +53,27 @@ screendiff compare before.png after.png --threshold 0.05
 screendiff compare before.png after.png --json
 ```
 
+## Included Example
+
+The repository includes two tiny PPM fixtures:
+
+```bash
+screendiff compare examples/before.ppm examples/after.ppm --threshold 0.10
+```
+
+Real output:
+
+```text
+ScreenDiff Report
+Before: examples/before.ppm
+After: examples/after.ppm
+Total Pixels: 16
+Diff Pixels: 1
+Diff: 6.25%
+Threshold: 10.00%
+Verdict: PASS
+```
+
 ## How It Works
 
 1. Load both images.

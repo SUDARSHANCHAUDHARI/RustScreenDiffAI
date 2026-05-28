@@ -1,5 +1,5 @@
 use anyhow::{bail, Result};
-use image::GenericImageView;
+use image::{GenericImageView, Rgb};
 
 pub struct DiffResult {
     pub total_pixels: u64,
@@ -39,4 +39,30 @@ pub fn compare(before_path: &str, after_path: &str, threshold: f64) -> Result<Di
         diff_percent,
         threshold,
     })
+}
+
+pub fn write_diff_image(before_path: &str, after_path: &str, output_path: &str) -> Result<()> {
+    let before = image::open(before_path)?;
+    let after = image::open(after_path)?;
+
+    if before.dimensions() != after.dimensions() {
+        bail!(
+            "Image dimensions differ: {:?} vs {:?}",
+            before.dimensions(),
+            after.dimensions()
+        );
+    }
+
+    let before_rgb = before.to_rgb8();
+    let after_rgb = after.to_rgb8();
+    let mut diff = before_rgb.clone();
+
+    for (x, y, pixel) in diff.enumerate_pixels_mut() {
+        if before_rgb.get_pixel(x, y) != after_rgb.get_pixel(x, y) {
+            *pixel = Rgb([255, 0, 255]);
+        }
+    }
+
+    diff.save(output_path)?;
+    Ok(())
 }

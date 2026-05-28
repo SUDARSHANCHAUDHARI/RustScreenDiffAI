@@ -4,9 +4,12 @@ This is a solo-maintained roadmap. Items are practical possibilities, not promis
 
 ## Planned
 
-- Add optional diff image output.
 - Add Markdown output for visual regression summaries.
 - Add clearer examples for threshold selection.
+
+## Completed
+
+- Optional diff image output with changed pixels highlighted in magenta.
 
 ## Maybe Later
 

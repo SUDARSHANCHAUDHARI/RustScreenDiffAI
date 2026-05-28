@@ -14,8 +14,12 @@ fn main() -> Result<()> {
             after,
             threshold,
             json,
+            diff_output,
         } => {
             let result = diff::compare(&before, &after, threshold)?;
+            if let Some(path) = diff_output {
+                diff::write_diff_image(&before, &after, &path)?;
+            }
             let report = report::build(&before, &after, &result);
             if json {
                 output::json::print(&report)?;

@@ -25,5 +25,8 @@ pub enum Commands {
         /// Output as JSON
         #[arg(long)]
         json: bool,
+        /// Write a visual diff image to this path
+        #[arg(long)]
+        diff_output: Option<String>,
     },
 }

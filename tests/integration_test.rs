@@ -160,3 +160,28 @@ fn test_cli_different_images_json_fail() {
         .success()
         .stdout(contains("Fail"));
 }
+
+#[test]
+fn test_cli_writes_diff_output_image() {
+    let a = solid_png(255, 0, 0);
+    let b = mostly_red_png();
+    let dir = tempfile::tempdir().unwrap();
+    let diff_path = dir.path().join("diff.png");
+
+    Command::cargo_bin("screendiff")
+        .unwrap()
+        .args([
+            "compare",
+            a.path().to_str().unwrap(),
+            b.path().to_str().unwrap(),
+            "--diff-output",
+            diff_path.to_str().unwrap(),
+        ])
+        .assert()
+        .success();
+
+    let diff = image::open(&diff_path).unwrap().to_rgb8();
+    assert_eq!(diff.dimensions(), (100, 100));
+    assert_eq!(*diff.get_pixel(0, 0), Rgb([255, 0, 255]));
+    assert_eq!(*diff.get_pixel(1, 0), Rgb([255, 0, 0]));
+}

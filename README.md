@@ -51,6 +51,9 @@ screendiff compare before.png after.png --threshold 0.05
 
 # Emit JSON
 screendiff compare before.png after.png --json
+
+# Write a visual diff image with changed pixels highlighted in magenta
+screendiff compare before.png after.png --diff-output diff.png
 ```
 
 ## Included Example
@@ -59,6 +62,8 @@ The repository includes two tiny PPM fixtures:
 
 ```bash
 screendiff compare examples/before.ppm examples/after.ppm --threshold 0.10
+
+screendiff compare examples/before.ppm examples/after.ppm --diff-output diff.png
 ```
 
 Real output:
@@ -81,7 +86,8 @@ Verdict: PASS
 3. Compare every pixel pair.
 4. Count changed pixels.
 5. Calculate `diff_percent = diff_pixels / total_pixels`.
-6. Return `PASS` when `diff_percent <= threshold`; otherwise return `FAIL`.
+6. Optionally write a diff image where changed pixels are magenta and unchanged pixels come from the baseline image.
+7. Return `PASS` when `diff_percent <= threshold`; otherwise return `FAIL`.
 
 ## Example Output
 
@@ -113,7 +119,7 @@ cargo test
 cargo build --release
 ```
 
-The integration tests cover zero diff, full diff, one-pixel changes, threshold behavior, dimension mismatch, and CLI output.
+The integration tests cover zero diff, full diff, one-pixel changes, threshold behavior, dimension mismatch, CLI output, and visual diff image generation.
 
 ## Project Structure
 

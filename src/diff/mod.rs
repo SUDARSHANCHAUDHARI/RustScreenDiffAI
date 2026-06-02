@@ -66,3 +66,56 @@ pub fn write_diff_image(before_path: &str, after_path: &str, output_path: &str) 
     diff.save(output_path)?;
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use image::{ImageBuffer, Rgb};
+    use tempfile::NamedTempFile;
+
+    fn save_solid_image(color: Rgb<u8>, w: u32, h: u32) -> NamedTempFile {
+        let f = NamedTempFile::with_suffix(".png").unwrap();
+        let img: ImageBuffer<Rgb<u8>, Vec<u8>> = ImageBuffer::from_fn(w, h, |_, _| color);
+        img.save(f.path()).unwrap();
+        f
+    }
+
+    #[test]
+    fn identical_images_have_zero_diff() {
+        let a = save_solid_image(Rgb([100, 150, 200]), 10, 10);
+        let b = save_solid_image(Rgb([100, 150, 200]), 10, 10);
+        let result = compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.01).unwrap();
+        assert_eq!(result.diff_pixels, 0);
+        assert_eq!(result.diff_percent, 0.0);
+    }
+
+    #[test]
+    fn fully_different_images_have_100_percent_diff() {
+        let a = save_solid_image(Rgb([0, 0, 0]), 4, 4);
+        let b = save_solid_image(Rgb([255, 255, 255]), 4, 4);
+        let result = compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.5).unwrap();
+        assert_eq!(result.diff_pixels, 16);
+        assert!((result.diff_percent - 1.0).abs() < f64::EPSILON);
+    }
+
+    #[test]
+    fn mismatched_dimensions_returns_error() {
+        let a = save_solid_image(Rgb([0, 0, 0]), 4, 4);
+        let b = save_solid_image(Rgb([0, 0, 0]), 8, 8);
+        assert!(compare(a.path().to_str().unwrap(), b.path().to_str().unwrap(), 0.0).is_err());
+    }
+
+    #[test]
+    fn write_diff_image_creates_output_file() {
+        let a = save_solid_image(Rgb([0, 0, 0]), 4, 4);
+        let b = save_solid_image(Rgb([255, 0, 0]), 4, 4);
+        let out = NamedTempFile::with_suffix(".png").unwrap();
+        write_diff_image(
+            a.path().to_str().unwrap(),
+            b.path().to_str().unwrap(),
+            out.path().to_str().unwrap(),
+        )
+        .unwrap();
+        assert!(out.path().exists());
+    }
+}

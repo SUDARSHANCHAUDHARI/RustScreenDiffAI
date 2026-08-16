@@ -20,5 +20,5 @@ Write a technical blog post about building a small Rust CLI for screenshot pixel
 
 - `examples/before.ppm`
 - `examples/after.ppm`
-- `screendiff compare examples/before.ppm examples/after.ppm --diff-output diff.png`
+- `screendiffai compare examples/before.ppm examples/after.ppm --diff-output diff.png`
 - JSON output for automation.

@@ -31,7 +31,7 @@ cargo build --release
 The binary is created at:
 
 ```bash
-target/release/screendiff
+target/release/screendiffai
 ```
 
 Optional local install:
@@ -44,16 +44,16 @@ cargo install --path .
 
 ```bash
 # Compare two screenshots with the default 1% threshold
-screendiff compare before.png after.png
+screendiffai compare before.png after.png
 
 # Allow up to 5% difference
-screendiff compare before.png after.png --threshold 0.05
+screendiffai compare before.png after.png --threshold 0.05
 
 # Emit JSON
-screendiff compare before.png after.png --json
+screendiffai compare before.png after.png --json
 
 # Write a visual diff image with changed pixels highlighted in magenta
-screendiff compare before.png after.png --diff-output diff.png
+screendiffai compare before.png after.png --diff-output diff.png
 ```
 
 ## Included Example
@@ -61,9 +61,9 @@ screendiff compare before.png after.png --diff-output diff.png
 The repository includes two tiny PPM fixtures:
 
 ```bash
-screendiff compare examples/before.ppm examples/after.ppm --threshold 0.10
+screendiffai compare examples/before.ppm examples/after.ppm --threshold 0.10
 
-screendiff compare examples/before.ppm examples/after.ppm --diff-output diff.png
+screendiffai compare examples/before.ppm examples/after.ppm --diff-output diff.png
 ```
 
 Real output:

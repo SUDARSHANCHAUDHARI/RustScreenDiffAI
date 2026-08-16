@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(
-    name = "screendiff",
+    name = "screendiffai",
     about = "Screenshot pixel diff engine — detect visual regressions",
     version
 )]

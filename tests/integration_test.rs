@@ -27,7 +27,7 @@ fn mostly_red_png() -> NamedTempFile {
 
 #[test]
 fn test_help() {
-    Command::cargo_bin("screendiff")
+    Command::cargo_bin("screendiffai")
         .unwrap()
         .arg("--help")
         .assert()
@@ -37,7 +37,7 @@ fn test_help() {
 
 #[test]
 fn test_compare_help() {
-    Command::cargo_bin("screendiff")
+    Command::cargo_bin("screendiffai")
         .unwrap()
         .args(["compare", "--help"])
         .assert()
@@ -131,7 +131,7 @@ fn test_single_pixel_diff_within_threshold_passes() {
 fn test_cli_identical_images_json_pass() {
     let a = solid_png(128, 128, 128);
     let b = solid_png(128, 128, 128);
-    Command::cargo_bin("screendiff")
+    Command::cargo_bin("screendiffai")
         .unwrap()
         .args([
             "compare",
@@ -148,7 +148,7 @@ fn test_cli_identical_images_json_pass() {
 fn test_cli_different_images_json_fail() {
     let a = solid_png(255, 0, 0);
     let b = solid_png(0, 0, 255);
-    Command::cargo_bin("screendiff")
+    Command::cargo_bin("screendiffai")
         .unwrap()
         .args([
             "compare",
@@ -168,7 +168,7 @@ fn test_cli_writes_diff_output_image() {
     let dir = tempfile::tempdir().unwrap();
     let diff_path = dir.path().join("diff.png");
 
-    Command::cargo_bin("screendiff")
+    Command::cargo_bin("screendiffai")
         .unwrap()
         .args([
             "compare",

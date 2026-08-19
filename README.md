@@ -1,13 +1,38 @@
 # RustScreenDiffAI
 
+[![crates.io](https://img.shields.io/crates/v/screendiffai?logo=rust)](https://crates.io/crates/screendiffai)
+[![Downloads](https://img.shields.io/crates/d/screendiffai?logo=rust)](https://crates.io/crates/screendiffai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust)
-![License](https://img.shields.io/badge/License-MIT-blue)
 
-RustScreenDiffAI is a Rust CLI pixel-diff engine for screenshot regression checks. It compares two images pixel by pixel, calculates the changed-pixel percentage, and returns a clear `PASS` or `FAIL` verdict against a configurable threshold.
+> A Rust CLI pixel-diff engine for screenshot regression checks — deterministic `PASS`/`FAIL` verdicts.
 
-## Why This Exists
+**RustScreenDiffAI** (installed as the `screendiffai` command) compares two images pixel
+by pixel, calculates the changed-pixel percentage, and returns a clear `PASS` or `FAIL`
+verdict against a configurable threshold.
 
-Visual regressions are easiest to miss when screens look “mostly fine.” RustScreenDiffAI provides a deterministic, script-friendly image comparison step that can be used in QA workflows, CI jobs, screenshot tests, and digital signage review pipelines.
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Included Example](#included-example)
+- [How It Works](#how-it-works)
+- [Example Output](#example-output)
+- [Threshold Guidance](#threshold-guidance)
+- [Development](#development)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
+- [Release Status](#release-status)
+- [License](#license)
+- [About](#about)
+
+## Overview
+
+Visual regressions are easiest to miss when screens look "mostly fine." RustScreenDiffAI
+provides a deterministic, script-friendly image comparison step that can be used in QA
+workflows, CI jobs, screenshot tests, and digital signage review pipelines.
 
 ## Features
 
@@ -22,6 +47,14 @@ Visual regressions are easiest to miss when screens look “mostly fine.” Rust
 
 ## Installation
 
+### From crates.io (recommended)
+
+```bash
+cargo install screendiffai
+```
+
+### From source
+
 ```bash
 git clone https://github.com/SUDARSHANCHAUDHARI/RustScreenDiffAI.git
 cd RustScreenDiffAI
@@ -34,7 +67,7 @@ The binary is created at:
 target/release/screendiffai
 ```
 
-Optional local install:
+Optional local install from a source checkout:
 
 ```bash
 cargo install --path .
@@ -119,7 +152,8 @@ cargo test
 cargo build --release
 ```
 
-The integration tests cover zero diff, full diff, one-pixel changes, threshold behavior, dimension mismatch, CLI output, and visual diff image generation.
+The integration tests cover zero diff, full diff, one-pixel changes, threshold behavior,
+dimension mismatch, CLI output, and visual diff image generation.
 
 ## Project Structure
 
@@ -132,7 +166,7 @@ tests/
   integration_test.rs
 ```
 
-## Project Docs
+## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Roadmap](docs/ROADMAP.md)
@@ -141,14 +175,37 @@ tests/
 
 ## Release Status
 
-Current production release: `v1.1.0`
+Current release: **`v1.1.1`**, published on [crates.io](https://crates.io/crates/screendiffai).
 
-The `v1.1.0` release was verified with formatting, clippy, tests, optimized release build, and `cargo package`.
+Each release is verified with formatting, Clippy, tests, an optimized release build, and
+`cargo package` before publishing.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
 
-## Developer
+---
 
-Built by [Sudarshan Chaudhari](https://github.com/SUDARSHANCHAUDHARI) under SudarshanTechLabs.
+## About
+
+I'm Sudarshan Chaudhari, a Senior Quality Engineer, Test Automation specialist, and AI systems builder based in Bangkok, Thailand.
+
+I have 13+ years of experience in software quality engineering, working across SaaS, fintech, gaming, web, mobile, cloud, and digital signage platforms. My background combines hands-on test automation with QA leadership, test strategy, CI/CD, release quality, production investigation, and cross-platform validation.
+
+Alongside my professional QA career, I run [SudarshanTechLabs](https://sudarshantechlabs.com/), my independent engineering and product lab where I design, build, test, and ship software across Android, web, AI, cybersecurity, developer tooling, and cross-platform applications.
+
+### What I work on
+
+- ⚙️ **Quality Engineering & Test Automation** — Playwright, Selenium, Cypress, Appium, API testing, automation frameworks, end-to-end testing, CI/CD, release gates, GitHub Actions, risk-based testing, and production validation
+- 🤖 **AI Systems & Automation** — AI agents, multi-agent orchestration, MCP servers, AI-assisted QA, prompt tooling, developer workflows, automation systems, and Claude Code plugins
+- 📱 **Mobile & Cross-Platform Applications** — Android applications built with Kotlin and Jetpack Compose, Google Play releases, automated build and publishing pipelines, and cross-platform development spanning iOS, web, Windows, and macOS
+- 🌐 **Web Applications & Platforms** — Full-stack applications using Next.js, TypeScript, Firebase, Cloudflare, REST APIs, and modern web infrastructure
+- 🛠️ **Developer Tooling & CLI Engineering** — Rust, Python, TypeScript, CLI utilities, multi-repository tooling, build automation, release tooling, and engineering productivity systems
+- 🛡️ **Cybersecurity & Observability** — Threat detection, log analysis, security auditing, vulnerability assessment, monitoring, and security-focused developer tools
+- 📺 **Digital Signage & Device Platforms** — Content validation, playback testing, device compatibility, production investigation, monitoring, and QA across diverse hardware and operating-system environments
+
+My work sits at the intersection of quality engineering, automation, AI, and software development. I approach products with a QA mindset from the beginning: understanding failure modes, designing for testability, automating repetitive work, and building release confidence into the engineering process.
+
+Through SudarshanTechLabs, I also build products and tools from idea to production, covering architecture, development, testing, CI/CD, release automation, monitoring, and ongoing maintenance.
+
+🌐 [sudarshantechlabs.com](https://sudarshantechlabs.com/) · 💼 [LinkedIn](https://linkedin.com/in/sudarshan-chaudhari) · 🐙 [GitHub](https://github.com/SUDARSHANCHAUDHARI) · ✉️ [sunny.sudarshan@gmail.com](mailto:sunny.sudarshan@gmail.com)
